@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+section#conteudo{
+	width: 1200px;
+
+}
+
+nav#menu{
+	width: 1200px;
+	height: 40px;
+
+}
+
+button#btnCadastro{
+	position: absolute;
+	margin-left: 0px;
+	border-left: 0px;
+}
+
+iframe#frame-cont{
+	width: 1200px;
+	height: 500px;
+	border: 0pt;
+	margin-left: -20;
+	/* Overflow: hidden ( Bloqueia a Rolagem nos navegadores ) */
+	overflow: hidden;
+}
+
+footer{
+	text-align: center;
+}
+
+a#cadastro{
+	color: white;
+	text-decoration: none;
+}
+
+iframe#frame-spec::-webkit-scrollbar{
+	display:none;
+}
