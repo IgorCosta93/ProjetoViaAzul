@@ -1,65 +1,53 @@
 var express = require('express');
 var app = express();
+var path = require('path');
+var favicon = require('serve-favicon');
 
 //Requisita o mongojs
 var mongojs = require('mongojs');
 //Especifica o banco que sera usado e em seguida a collection
 var db = mongojs('contactlist', ['contactlist']);
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+require('./server/models/Contact');
+var routes = require('./server/routes/index');
+
+mongoose.connect('mongodb://localhost/news');
 
 //Responsavel por chamar o arquivo Index.html e direcionar a localização
 //Procura por arquivos estaticos
-app.use(express.static(__dirname + "/public"));
+app.set('views', path.join(__dirname, 'src/templates'));
+app.set('view engine', 'pug');
+
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(express.static(__dirname + "/src"));
 app.use(bodyParser.json());
 
-app.get('/contactlist', function(req, res){
-  console.log("I receive a Get request")
+app.use('/', routes);
 
-  db.contactlist.find(function(err, docs){
-    console.log(docs);
-    res.json(docs);
-  });
-
-  app.post('/contactlist', function(req, res){
-    console.log(req.body);
-    db.contactlist.insert(req.body, function(err, doc){
-      res.json(doc);
-    })
-  });
-
-  app.delete('/contactlist/:id', function (req, res){
-    var id = req.params.id;
-    console.log(id);
-    db.contactlist.remove({_id: mongojs.ObjectId(id)}, function (err, doc){
-      res.json(doc);
-    });
-  });
-
-  app.get('/contactlist/:id', function (req, res){
-    var id = req.params.id;
-    console.log(id);
-    db.contactlist.findOne({_id: mongojs.ObjectId(id)}, function (err, doc){
-      res.json(doc);
-    });
-  });
-
-  app.put('/contactlist/:id', function (req, res){
-    var id = req.params.id;
-    console.log(req.body.name);
-    db.contactlist.findAndModify({query: {_id: mongojs.ObjectId(id)},
-      update: {$set: {name: req.body.name, email: req.body.email, number: req.body.number}},
-      new: true}, function (err, doc){
-        res.json(doc);
-
-    });
-  });
-
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-/*
-app.listen(3000);
-console.log("Server running on port 3000");
-*/
+// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
+
 app.listen(3000, function(){
-  console.log('Servidor esta rodando!');
+  console.log('Running on port 3000 😛');
 });
+
+module.exports = app;

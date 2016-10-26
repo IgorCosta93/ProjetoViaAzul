@@ -1,8 +1,26 @@
-var myApp = angular.module('myApp', []);
+var app = angular.module('myApp', ['ui.router']);
+
+app.config([
+'$stateProvider',
+'$urlRouterProvider',
+'$routeProvider',
+'$locationProvider',
+function($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {
+
+  $stateProvider
+    .when('/home', {
+      controller: 'HomeCtrl',
+      // controllerAs: '$ctrl',
+      templateUrl: '/home.pug'
+    });
+
+  $urlRouterProvider.otherwise('home');
+}]);
+
 
 myApp.controller('AppCtrl',['$scope','$http',
   function($scope,$http){
-    console.log("Hello world from controller")
+    console.log("Hello world from controller");
 
 var refresh = function(){
     $http.get('/contactlist').success(function(response){

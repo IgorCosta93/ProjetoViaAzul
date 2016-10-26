@@ -1,0 +1,31 @@
+table.table
+  thead
+    tr
+      th Nome
+      th Email
+      th Numero
+      th &nbsp;
+      th &nbsp;
+
+  tbody
+    tr
+      td
+        input.form-control(ng-model="contact.name")
+      td
+        input.form-control(ng-model="contact.email")
+      td
+        input.form-control(ng-model="contact.number")
+      td
+        button.btn.btn-primary(ng-click="addContact()") Adicionar Contato
+      td
+        button.btn.btn-info(ng-click="update()") Atualizar&nbsp;&nbsp;
+        button.btn.btn-info(ng-click="deselect()") Limpar
+
+    tr(ng-repeat="contact in contactlist")
+      td {{contact.name}}
+      td {{contact.email}}
+      td {{contact.number}}
+      td
+        button.btn.btn-danger(ng-click="remove(contact._id)") Remover
+      td
+        button.btn.btn-warning(ng-click="edit(contact._id)") Editar
