@@ -10,17 +10,18 @@ html(ng-app="myApp")
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css", integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp", crossorigin="anonymous")
     link(rel="stylesheet" type="text/css" href="css/style.css")
 
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js")
+    script(src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js")
+    script(src="js/controllers/controller.js")
+
   body(ng-controller="AppCtrl")
     h1 Cadastro de Contatos
 
     nav(id="menu")
       button.btn.btn-primary(id="btnCadastro")
-        a(id="cadastro", target="janela", ng-href="home") Cadastro
+        a(id="cadastro", href="#home") Cadastro
 
-    section(id="conteudo")
-      iframe(name="janela" id="frame-cont")
-
-    ui-view#main
+    ng-view
 
       //- <button class="btn btn-primary" ng-click="addContact()">Adicionar Contato</button>
       //- <iframe src="http://localhost:3000/" name="janela" id="frame-spec"></iframe>
@@ -28,8 +29,6 @@ html(ng-app="myApp")
       //- <input ng-model="test">
       //-   {{test}}
 
-    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js")
-    script(src="js/controllers/controller.js")
 
     footer(id="rodape")
       p Copyright 2016 &copy; - by Igor Costa

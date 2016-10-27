@@ -7,8 +7,11 @@ var mongoose = require('mongoose');
 var Contact = mongoose.model('Contact');
 
 router.get('/', function(req, res, next) {
-  console.log('entrooooou');
   res.render('index');
+});
+
+router.get('/home', function(req, res, next) {
+  res.render('home');
 });
 
 app.get('/contactlist', function(req, res){

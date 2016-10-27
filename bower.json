@@ -1,0 +1,20 @@
+{
+  "name": "q",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Natasha <natasha.matias@tegra.me>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/IgorCosta93/ProjetoViaAzul",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.5.8"
+  }
+}

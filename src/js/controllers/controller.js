@@ -1,37 +1,29 @@
-var app = angular.module('myApp', ['ui.router']);
+var app = angular.module('myApp', ['ngRoute']);
 
-app.config([
-'$stateProvider',
-'$urlRouterProvider',
-'$routeProvider',
-'$locationProvider',
-function($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {
+app.config(['$routeProvider', configRouter]);
 
-  $stateProvider
+function configRouter ($routeProvider) {
+  $routeProvider
     .when('/home', {
-      controller: 'HomeCtrl',
+      controller: 'AppCtrl',
       // controllerAs: '$ctrl',
-      templateUrl: '/home.pug'
+      templateUrl: 'home'
     });
+}
 
-  $urlRouterProvider.otherwise('home');
-}]);
-
-
-myApp.controller('AppCtrl',['$scope','$http',
-  function($scope,$http){
+app.controller('AppCtrl',['$scope', '$location','$http', function($scope, $location, $http){
     console.log("Hello world from controller");
 
-var refresh = function(){
-    $http.get('/contactlist').success(function(response){
-        console.log("I receive the data");
-        $scope.contactlist = response;
-        //Esse comando a seguir joga os Dados no index.html
-        $scope.contact = "";
-    });
-};
-
-refresh();
+// var refresh = function(){
+//     $http.get('/contactlist').success(function(response){
+//         console.log("I receive the data");
+//         $scope.contactlist = response;
+//         //Esse comando a seguir joga os Dados no index.html
+//         $scope.contact = "";
+//     });
+// };
+//
+// refresh();
 
     $scope.addContact = function() {
       console.log($scope.contact);
