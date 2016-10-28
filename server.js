@@ -13,7 +13,7 @@ var mongoose = require('mongoose');
 require('./server/models/Contact');
 var routes = require('./server/routes/index');
 
-mongoose.connect('mongodb://localhost/news');
+mongoose.connect('mongodb://localhost/database_va');
 
 //Responsavel por chamar o arquivo Index.html e direcionar a localização
 //Procura por arquivos estaticos
@@ -47,7 +47,7 @@ if (app.get('env') === 'development') {
 }
 
 app.listen(3000, function(){
-  console.log('Running on port 3000 😛');
+  console.log('Running on port 3000 😛 ...');
 });
 
 module.exports = app;
