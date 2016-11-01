@@ -16,34 +16,40 @@ router.get('/home', function(req, res, next) {
 });
 
 router.get('/contactlist', function(req, res){
-
   Contact.find(function(err, docs){
     res.json(docs);
   });
 });
 
+router.get('/contactlist/:id', function(req, res){
+  Contact.find({_id: req.params.id}, function(err, docs){
+    res.json(docs);
+  });
+});
+
+
 router.post('/contactlist', function(req, res){
   // console.log(req.body);
   Contact.create(req.body, function(err, doc) {
-    if (err) return next(err);
+    //if (err) return next(err);
     res.send(doc);
   });
 });
 //
 router.delete('/contactlist/:id', function (req, res){
   var id = req.params.id;
-  Contact.find(req.body).remove(function (err, doc){
+  Contact.find({_id: id}).remove(function (err, doc){
     if(err) console.log(err);
     res.json(doc);
   });
 });
 
-router.post('/contactlist/:id', function (req, res){
+router.put('/contactlist/:id', function (req, res){
   var id = req.params.id;
-  Contact.find(({_id: req.body}).update({name: req.body.name, number: req.body.number}), function (err, doc){
-    console.log('funfou');
-    res.json(doc);
-  });
+//  Contact.find(({_id: id}).update({name: req.body.name, number: req.body.number}), function (err, doc){
+  //  console.log('funfou');
+    //res.json(doc);
+//  });
 
 
 // router.put('/contactlist/:id', function (req, res){
