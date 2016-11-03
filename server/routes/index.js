@@ -30,8 +30,11 @@ router.get('/contactlist/:id', function(req, res){
 
 router.post('/contactlist', function(req, res){
   // console.log(req.body);
-  Contact.create(req.body, function(err, doc) {
-    //if (err) return next(err);
+  var contact = new Contact(req.body);
+
+  console.log(contact);
+  Contact.update({_id: req.body._id}, req.body, {upsert: true,  setDefaultsOnInsert: true}, function(err, doc) {
+    // if (err) return err;
     res.send(doc);
   });
 });
