@@ -1,30 +1,17 @@
-var app = angular.module('myApp', ['ngRoute']);
-
-app.config(['$routeProvider', configRouter]);
-
-function configRouter ($routeProvider) {
-  $routeProvider
-    .when('/home', {
-      controller: 'AppCtrl',
-      // controllerAs: '$ctrl',
-      templateUrl: 'home'
-    });
-}
-
 app.controller('AppCtrl',['$scope', '$location','$http', function($scope, $location, $http){
 
-  var refresh = function(){
+  var loadData = function(){
     $http.get('/contactlist').success(function(res) {
       $scope.contacts = res;
         $scope.contact = "";
     });
   };
 
-  refresh();
+  loadData();
 
-  $scope.addContact = function() {
+  $scope.create = function() {
     $http.post('/contactlist', $scope.contact).success(function(response){
-      refresh();
+      loadData();
     });
   };
 
@@ -41,7 +28,7 @@ app.controller('AppCtrl',['$scope', '$location','$http', function($scope, $locat
      });
   };
 
-  $scope.deselect = function(){
+  $scope.clean = function(){
     $scope.contact = "";
   };
 
