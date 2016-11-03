@@ -16,10 +16,10 @@ table.table
       td
         input.form-control(ng-model="contact.number")
       td
-        button.btn.btn-primary(ng-click="addContact()") Adicionar Contato
+        button.btn.btn-primary(ng-click="create()") Adicionar Contato
       td
-        button.btn.btn-info(ng-click="update()") Atualizar&nbsp;&nbsp;
-        button.btn.btn-info(ng-click="deselect()") Limpar
+        button.btn.btn-info(ng-click="loadData()") Atualizar&nbsp;&nbsp;
+        button.btn.btn-info(ng-click="clean()") Limpar
 
     tr(ng-repeat="contact in contacts")
       td {{contact.name}}
