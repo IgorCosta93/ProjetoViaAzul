@@ -1,17 +1,5 @@
 # ProjetoViaAzul
 
-1. criar pasta ```npm install express```
-
-2. criar arquivo server.js
-
-3. criar pasta public
-
-4. criar arquivo index.html
-
-
-node server para executar o servidor na porta 3000
-
-
 ## Banco MongoDB
 
 Deixar um shell para Node Server
