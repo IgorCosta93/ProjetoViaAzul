@@ -29,11 +29,15 @@ router.get('/contactlist/:id', function(req, res){
 
 
 router.post('/contactlist', function(req, res){
-  var contact = new Contact(req.body);
+  if(req.body._id) {
+    Contact.update({_id: req.body._id}, req.body, {upsert: true,  setDefaultsOnInsert: true}, function(err, doc) {
+      // if (err) return err;
+      return res.send(doc);
+    });
+  }
 
-  Contact.update({_id: req.body._id}, req.body, {upsert: true,  setDefaultsOnInsert: true}, function(err, doc) {
-    // if (err) return err;
-    res.send(doc);
+  Contact.create(req.body, function(err, doc) {
+    return res.send(doc);
   });
 });
 //
