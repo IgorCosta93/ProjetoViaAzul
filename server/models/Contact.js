@@ -7,7 +7,6 @@ var ContactSchema = new mongoose.Schema({
 });
 
 ContactSchema.pre('save', function(next, done) {
-  /* global emailAuthor */
   next();
 });
 

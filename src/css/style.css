@@ -22,7 +22,6 @@ iframe#frame-cont{
 	height: 500px;
 	border: 0pt;
 	margin-left: -20;
-	/* Overflow: hidden ( Bloqueia a Rolagem nos navegadores ) */
 	overflow: hidden;
 }
 

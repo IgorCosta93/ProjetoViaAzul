@@ -3,9 +3,7 @@ var app = express();
 var path = require('path');
 var favicon = require('serve-favicon');
 
-//Requisita o mongojs
 var mongojs = require('mongojs');
-//Especifica o banco que sera usado e em seguida a collection
 var db = mongojs('contactlist', ['contactlist']);
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
@@ -15,8 +13,6 @@ var routes = require('./server/routes/index');
 
 mongoose.connect('mongodb://localhost/database_va');
 
-//Responsavel por chamar o arquivo Index.html e direcionar a localização
-//Procura por arquivos estaticos
 app.set('views', path.join(__dirname, 'src/templates'));
 app.set('view engine', 'pug');
 
@@ -32,10 +28,6 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlers
-
-// development error handler
-// will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
