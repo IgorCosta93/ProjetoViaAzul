@@ -6,6 +6,10 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var mongojs = require('mongojs');
 var Contact = mongoose.model('Contact');
+var Client = mongoose.model('Client');
+
+
+// CONTATOS
 
 router.get('/', function(req, res, next) {
   res.render('index');
@@ -14,6 +18,11 @@ router.get('/', function(req, res, next) {
 router.get('/home', function(req, res, next) {
   res.render('home');
 });
+
+router.get('/client', function(req, res, next) {
+  res.render('client');
+});
+
 
 router.get('/contactlist', function(req, res){
   Contact.find(function(err, docs){
@@ -48,5 +57,47 @@ router.delete('/contactlist/:id', function (req, res){
     res.json(doc);
   });
 });
+
+
+
+// CLIENTE
+router.get('/clientlist', function(req, res){
+  Client.find(function(err, docs){
+    res.json(docs);
+  });
+});
+
+router.get('/clientlist/:id', function(req, res){
+  Client.find({_id: req.params.id}, function(err, docs){
+    res.json(docs);
+  });
+});
+
+
+router.post('/clientlist', function(req, res){
+  if(req.body._id) {
+    Client.update({_id: req.body._id}, req.body, {upsert: true,  setDefaultsOnInsert: true}, function(err, doc) {
+      // if (err) return err;
+      return res.send(doc);
+    });
+  }
+
+  Client.create(req.body, function(err, doc) {
+    return res.send(doc);
+  });
+});
+//
+router.delete('/clientlist/:id', function (req, res){
+  var id = req.params.id;
+  Client.find({_id: id}).remove(function (err, doc){
+    if(err) console.log(err);
+    res.json(doc);
+  });
+});
+
+
+
+
+
 
 module.exports = router;

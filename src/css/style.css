@@ -29,9 +29,22 @@ footer{
 	text-align: center;
 }
 
-a#cadastro{
+a{
 	color: white;
 	text-decoration: none;
+}
+
+li{
+		display: inline;
+		margin: 10px;
+}
+
+ul{
+		text-align: left;
+}
+
+.btn-info{
+		margin-left: 10px;
 }
 
 iframe#frame-spec::-webkit-scrollbar{

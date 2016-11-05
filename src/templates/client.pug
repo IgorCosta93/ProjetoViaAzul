@@ -1,0 +1,32 @@
+table.table
+  thead
+    tr
+      th Nome
+      th Rg
+      th celular
+      th Endereço
+  tbody
+    tr
+      td
+        input.form-control(ng-model="client.name")
+      td
+        input.form-control(ng-model="client.rg")
+      td
+        input.form-control(ng-model="client.celular")
+      td
+        input.form-control(ng-model="client.endereco")
+      td
+        button.btn.btn-primary(ng-click="create()") Adicionar cliente
+      td
+        button.btn.btn-info(ng-click="loadData()") Atualizar&nbsp;&nbsp;
+        button.btn.btn-info(ng-click="clean()") Limpar
+
+    tr(ng-repeat="client in clients")
+      td {{client.name}}
+      td {{client.rg}}
+      td {{client.celular}}
+      td {{client.endereco}}
+      td
+        button.btn.btn-danger(ng-click="remove(client._id)") Remover
+      td
+        button.btn.btn-warning(ng-click="edit(client._id)") Editar

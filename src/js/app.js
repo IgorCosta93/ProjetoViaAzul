@@ -8,5 +8,11 @@ function configRouter ($routeProvider) {
       controller: 'AppCtrl',
       // controllerAs: '$ctrl',
       templateUrl: 'home'
+    })
+
+    .when('/client', {
+      controller: 'clientCtrl',
+      // controllerAs: '$ctrl',
+      templateUrl: 'client'
     });
 }
