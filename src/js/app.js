@@ -10,9 +10,17 @@ function configRouter ($routeProvider) {
       templateUrl: 'home'
     })
 
+    .when('/provider', {
+      controller: 'providerCtrl',
+      // controllerAs: '$ctrl',
+      templateUrl: 'provider'
+    })
+
     .when('/client', {
       controller: 'clientCtrl',
       // controllerAs: '$ctrl',
       templateUrl: 'client'
     });
+
+
 }

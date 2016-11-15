@@ -25,7 +25,7 @@ app.controller('clientCtrl',['$scope', '$location','$http', function($scope, $lo
 
     $http.get('/clientlist/' + id).success(function(response){
       $scope.client = response[0];
-     });
+    });
   };
 
   $scope.clean = function(){

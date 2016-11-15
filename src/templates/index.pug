@@ -15,6 +15,7 @@ html(ng-app="myApp")
     script(src="js/app.js")
     script(src="js/controllers/controller.js")
     script(src="js/controllers/clientCtrl.js")
+    script(src="js/controllers/providerCtrl.js")
 
   body(ng-controller="AppCtrl")
     h1 Cadastro de Contatos
@@ -25,6 +26,8 @@ html(ng-app="myApp")
           a.btn.btn-primary(href="#home") Cadastro
         li
           a.btn.btn-primary(href="#client") Cadastro Cliente
+        li
+          a.btn.btn-primary(href="#provider") Cadastro Fornecedor
 
     ng-view
 

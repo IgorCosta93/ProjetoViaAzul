@@ -1,0 +1,36 @@
+table.table
+  thead
+    tr
+      th CNPJ
+      th Razão Social
+      th Nome Fantasia
+      th Telefone
+      th Endereço
+  tbody
+    tr
+      td
+        input.form-control(ng-model="provider.cnpj")
+      td
+        input.form-control(ng-model="provider.razaoSocial")
+      td
+        input.form-control(ng-model="provider.nomeFantasia")
+      td
+        input.form-control(ng-model="provider.telefone")
+      td
+        input.form-control(ng-model="provider.endereco")
+      td
+        button.btn.btn-primary(ng-click="create()") Adicionar
+      td
+        button.btn.btn-info(ng-click="loadData()") Atualizar&nbsp;&nbsp;
+        button.btn.btn-info(ng-click="clean()") Limpar
+
+    tr(ng-repeat="provider in providers")
+      td {{provider.cnpj}}
+      td {{provider.razaoSocial}}
+      td {{provider.nomeFantasia}}
+      td {{provider.telefone}}
+      td {{provider.endereco}}
+      td
+        button.btn.btn-danger(ng-click="remove(provider._id)") Remover
+      td
+        button.btn.btn-warning(ng-click="edit(provider._id)") Editar

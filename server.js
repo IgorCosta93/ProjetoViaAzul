@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 
 require('./server/models/Contact');
 require('./server/models/Client');
+require('./server/models/Provider');
 var routes = require('./server/routes/index');
 
 mongoose.connect('mongodb://localhost/database_va');

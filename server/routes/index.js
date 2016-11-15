@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var mongojs = require('mongojs');
 var Contact = mongoose.model('Contact');
 var Client = mongoose.model('Client');
-
+var Provider = mongoose.model('Provider');
 
 // CONTATOS
 
@@ -21,6 +21,10 @@ router.get('/home', function(req, res, next) {
 
 router.get('/client', function(req, res, next) {
   res.render('client');
+});
+
+router.get('/provider', function(req, res, next) {
+  res.render('provider');
 });
 
 
@@ -95,7 +99,41 @@ router.delete('/clientlist/:id', function (req, res){
   });
 });
 
+//FORNECEDOR
 
+router.get('/providerlist', function(req, res){
+  Provider.find(function(err, docs){
+    res.json(docs);
+  });
+});
+
+router.get('/providerlist/:id', function(req, res){
+  Provider.find({_id: req.params.id}, function(err, docs){
+    res.json(docs);
+  });
+});
+
+
+router.post('/providerlist', function(req, res){
+  if(req.body._id) {
+    Provider.update({_id: req.body._id}, req.body, {upsert: true,  setDefaultsOnInsert: true}, function(err, doc) {
+      // if (err) return err;
+      return res.send(doc);
+    });
+  }
+
+  Provider.create(req.body, function(err, doc) {
+    return res.send(doc);
+  });
+});
+//
+router.delete('/providerlist/:id', function (req, res){
+  var id = req.params.id;
+  Provider.find({_id: id}).remove(function (err, doc){
+    if(err) console.log(err);
+    res.json(doc);
+  });
+});
 
 
 
